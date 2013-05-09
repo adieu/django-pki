@@ -9,6 +9,8 @@ class Migration(DataMigration):
     def forwards(self, orm):
         "Write your forwards methods here."
         # Note: Remember to use orm['appname.ModelName'] rather than "from appname.models..."
+        from django.core.management import call_command
+        call_command("loaddata", "eku_and_ku.json")
 
     def backwards(self, orm):
         "Write your backwards methods here."
