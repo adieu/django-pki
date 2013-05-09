@@ -207,7 +207,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'pki.certificate': {
-            'Meta': {'unique_together': "(('name', 'parent'), ('common_name', 'parent'))", 'object_name': 'Certificate'},
+            'Meta': {'unique_together': "[('name', 'parent'), ('common_name', 'parent')]", 'object_name': 'Certificate'},
             'OU': ('django.db.models.fields.CharField', [], {'max_length': '64', 'null': 'True', 'blank': 'True'}),
             'action': ('django.db.models.fields.CharField', [], {'default': "'create'", 'max_length': '32'}),
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),

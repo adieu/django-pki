@@ -66,15 +66,15 @@ class x509ExtensionFilter(RelatedFieldListFilter):
 
 ##------------------------------------------------------------------##
 
-KEY_LENGTH = ((1024, '1024'), (2048, '2048'), (4096, '4096'))
-POLICY = (('policy_match', 'policy_match'),
-          ('policy_anything', 'policy_anything'))
-ACTIONS = (('create', 'Create certificate'),
+KEY_LENGTH = [(1024, '1024'), (2048, '2048'), (4096, '4096')]
+POLICY =  [('policy_match', 'policy_match'),
+           ('policy_anything', 'policy_anything')]
+ACTIONS = [('create', 'Create certificate'),
            ('update', 'Update description and export options'),
            ('revoke', 'Revoke certificate'),
-           ('renew', 'Renew CSR (CN and key are kept)'))
+           ('renew', 'Renew CSR (CN and key are kept)')]
 
-COUNTRY = (('AD', 'AD'), ('AE', 'AE'), ('AF', 'AF'), ('AG', 'AG'),
+COUNTRY = [('AD', 'AD'), ('AE', 'AE'), ('AF', 'AF'), ('AG', 'AG'),
            ('AI', 'AI'), ('AL', 'AL'), ('AM', 'AM'), ('AN', 'AN'),
            ('AO', 'AO'), ('AQ', 'AQ'), ('AR', 'AR'), ('AS', 'AS'),
            ('AT', 'AT'), ('AU', 'AU'), ('AW', 'AW'), ('AZ', 'AZ'),
@@ -135,7 +135,7 @@ COUNTRY = (('AD', 'AD'), ('AE', 'AE'), ('AF', 'AF'), ('AG', 'AG'),
            ('VN', 'VN'), ('VU', 'VU'), ('WF', 'WF'), ('WS', 'WS'),
            ('YD', 'YD'), ('YE', 'YE'), ('YT', 'YT'), ('YU', 'YU'),
            ('ZA', 'ZA'), ('ZM', 'ZM'), ('ZR', 'ZR'), ('ZW', 'ZW'),
-           ('ZZ', 'ZZ'), ('ZZ', 'ZZ'),)
+           ('ZZ', 'ZZ'), ('ZZ', 'ZZ'),]
 
 ##------------------------------------------------------------------##
 ## Custom field validators
@@ -524,7 +524,7 @@ class CertificateAuthority(CertificateBase):
     class Meta:
         db_table = 'pki_certificateauthority'
         verbose_name_plural = 'Certificate Authorities'
-        permissions = (("can_download", "Can download"))
+        permissions = [("can_download", "Can download")]
 
     def __unicode__(self):
         return self.common_name
@@ -919,8 +919,8 @@ class Certificate(CertificateBase):
     class Meta:
         db_table = 'pki_certificate'
         verbose_name_plural = 'Certificates'
-        permissions = (("can_download", "Can download"))
-        unique_together = (("name", "parent"), ("common_name", "parent"))
+        permissions = [("can_download", "Can download")]
+        unique_together = [("name", "parent"), ("common_name", "parent")]
     
     def __unicode__(self):
         return self.common_name
@@ -1153,12 +1153,12 @@ class PkiChangelog(models.Model):
 class x509Extension(models.Model):
     """x509 extensions"""
     
-    SUBJECT_KEY_IDENTIFIER = (('hash', 'hash'),)
-    AUTHORITY_KEY_IDENTIFIER = (('keyid:always,issuer:always',
-                                 'keyid: always, issuer: always'),)
-    BASIC_CONSTRAINTS = (('CA:TRUE', 'Root or Intermediate CA (CA:TRUE)'),
+    SUBJECT_KEY_IDENTIFIER = [('hash', 'hash'),]
+    AUTHORITY_KEY_IDENTIFIER = [('keyid:always,issuer:always',
+                                 'keyid: always, issuer: always'),]
+    BASIC_CONSTRAINTS = [('CA:TRUE', 'Root or Intermediate CA (CA:TRUE)'),
                          ('CA:TRUE,pathlen:0', 'Edge CA (CA:TRUE, pathlen:0)'),
-                         ('CA:FALSE', 'Enduser Certificate (CA:FALSE)'),)
+                         ('CA:FALSE', 'Enduser Certificate (CA:FALSE)'),]
     
     name = models.CharField(max_length=255, unique=True,
                             validators=[
