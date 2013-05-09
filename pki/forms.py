@@ -3,6 +3,7 @@ import os
 from django import forms
 from django.forms.util import ErrorList
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 from pki.models import *
 from pki.settings import PKI_DIR, PKI_CA_NAME_BLACKLIST
